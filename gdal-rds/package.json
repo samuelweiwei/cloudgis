@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@aws-sdk/rds-signer": "^3.749.0",
+    "gdal-async": "^3.10.1",
+    "pg": "^8.13.3"
+  }
+}
