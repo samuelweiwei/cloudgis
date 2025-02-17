@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
             defaultValue: NOW
         },
     }, {
-        createdAt: 'createTime', // 使用'creationDate'替代'createdAt'
-        updatedAt: 'updateTime' // 使用'modificationDate'替代'updatedAt'
+        createdAt: 'createTime', // Use 'creationDate'substitute'createdAt'
+        updatedAt: 'updateTime' // Use'modificationDate'substitute'updatedAt'
     });
 };
