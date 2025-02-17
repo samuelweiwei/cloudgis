@@ -27,7 +27,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 });
 
 const modelDefiners = [
-    require('./model/users.model'),
+    require('./model/users.model.js'),
     // Add more models here...
 ];
 
@@ -35,5 +35,13 @@ for (const modelDefiner of modelDefiners) {
     modelDefiner(sequelize);
 }
 
+// Sync all models and create tables if they don't exist
+sequelize.sync({ force: false, alter: true })  // ⚠️ Be careful with `force: true` as it drops tables
+  .then(() => {
+    console.log('Tables created successfully!');
+  })
+  .catch((error) => {
+    console.error('Error syncing tables:', error);
+  });
 
 module.exports = sequelize;
