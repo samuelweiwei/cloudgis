@@ -37,8 +37,17 @@ for (const modelDefiner of modelDefiners) {
 
 // Sync all models and create tables if they don't exist
 sequelize.sync({ force: false, alter: true })  // ⚠️ Be careful with `force: true` as it drops tables
-  .then(() => {
+  .then(async () => {
     console.log('Tables created successfully!');
+
+    // Insert demo users
+    await User.bulkCreate([
+        { address: '0x1234567890abcdef', createTime: new Date(), updateTime: new Date() },
+        { address: '0xabcdef1234567890', createTime: new Date(), updateTime: new Date() },
+        { address: '0x9876543210fedcba', createTime: new Date(), updateTime: new Date() },
+      ]);
+
+    console.log('Demo users inserted successfully!');
   })
   .catch((error) => {
     console.error('Error syncing tables:', error);
