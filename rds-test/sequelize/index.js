@@ -31,26 +31,56 @@ const modelDefiners = [
     // Add more models here...
 ];
 
+// Initialize models
 for (const modelDefiner of modelDefiners) {
     modelDefiner(sequelize);
 }
 
+// Get User model after initialization
+const { users: User } = sequelize.models;
+
 // Sync all models and create tables if they don't exist
-sequelize.sync({ force: false, alter: true })  // ⚠️ Be careful with `force: true` as it drops tables
-  .then(async () => {
-    console.log('Tables created successfully!');
+const initDatabase = async () => {
+    try {
+        // Sync tables
+        await sequelize.sync({ force: false, alter: true });  // ⚠️ Be careful with `force: true` as it drops tables
+        console.log('Tables created successfully!');
 
-    // Insert demo users
-    await User.bulkCreate([
-        { address: '0x1234567890abcdef', createTime: new Date(), updateTime: new Date() },
-        { address: '0xabcdef1234567890', createTime: new Date(), updateTime: new Date() },
-        { address: '0x9876543210fedcba', createTime: new Date(), updateTime: new Date() },
-      ]);
+        // Check if we already have users
+        const userCount = await User.count();
+        
+        if (userCount === 0) {
+            // Insert demo users only if no users exist
+            await User.bulkCreate([
+                { 
+                    address: '0x1234567890abcdef',
+                    createTime: new Date(),
+                    updateTime: new Date()
+                },
+                { 
+                    address: '0xabcdef1234567890',
+                    createTime: new Date(),
+                    updateTime: new Date()
+                },
+                { 
+                    address: '0x9876543210fedcba',
+                    createTime: new Date(),
+                    updateTime: new Date()
+                },
+            ]);
+            console.log('Demo users inserted successfully!');
+        } else {
+            console.log('Users already exist, skipping demo data insertion');
+        }
+    } catch (error) {
+        console.error('Database initialization error:', error);
+        throw error;
+    }
+};
 
-    console.log('Demo users inserted successfully!');
-  })
-  .catch((error) => {
-    console.error('Error syncing tables:', error);
-  });
+// Execute initialization
+initDatabase()
+    .then(() => console.log('Database initialization completed'))
+    .catch(error => console.error('Failed to initialize database:', error));
 
 module.exports = sequelize;
