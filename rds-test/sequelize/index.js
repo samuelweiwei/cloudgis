@@ -23,6 +23,9 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
         acquire: 30000,
         idle: 10000
     },
+    query: {
+        raw: true
+    },
     logging: console.log
 });
 
@@ -39,11 +42,11 @@ for (const modelDefiner of modelDefiners) {
 // Get User model after initialization
 const { users: User } = sequelize.models;
 
-// Sync all models and create tables if they don't exist
+// 修改为一个可导出的初始化函数，而不是立即执行
 const initDatabase = async () => {
     try {
         // Sync tables
-        await sequelize.sync({ force: false, alter: true });  // ⚠️ Be careful with `force: true` as it drops tables
+        await sequelize.sync({ force: false, alter: true });
         console.log('Tables created successfully!');
 
         // Check if we already have users
@@ -78,9 +81,7 @@ const initDatabase = async () => {
     }
 };
 
-// Execute initialization
-initDatabase()
-    .then(() => console.log('Database initialization completed'))
-    .catch(error => console.error('Failed to initialize database:', error));
-
-module.exports = sequelize;
+module.exports = {
+    sequelize,
+    initDatabase
+};

@@ -1,6 +1,7 @@
-import sequelize from './sequelize/index.js';
+import { sequelize, initDatabase } from './sequelize/index.js';
 
 let isDbConnected = false;
+let isDbInitialized = false;
 
 const initializeDb = async () => {
     if (!isDbConnected) {
@@ -8,6 +9,11 @@ const initializeDb = async () => {
             await sequelize.authenticate();
             console.log('Database connection has been established successfully.');
             isDbConnected = true;
+
+            if (!isDbInitialized) {
+                await initDatabase();
+                isDbInitialized = true;
+            }
         } catch (error) {
             console.error('Unable to connect to the database:', error);
             throw error;
