@@ -21,6 +21,11 @@ const initializeDb = async () => {
     }
 };
 
+const postgisexec = async () =>{
+    const result = sequelize.query('select postgis_version();');
+    return result;
+}
+
 export const handler = async (event) => {
     try {
         await initializeDb();
@@ -29,12 +34,18 @@ export const handler = async (event) => {
         const allUsers = await users.findAll({
             limit: 10
         });
-
+        const [postgisVersion] = await sequelize.query(
+            'SELECT postgis_version();',
+            {
+                type: QueryTypes.SELECT,
+                plain: true // Returns a single object instead of an array
+            }
+        );
         return {
             statusCode: 200,
             body: JSON.stringify({
                 message: 'Success',
-                data: allUsers
+                data: postgisVersion
             })
         };
 
