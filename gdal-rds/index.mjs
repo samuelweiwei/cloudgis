@@ -1,12 +1,14 @@
-// import gdal from 'gdal-async';
-// import path from 'path';
+import gdal from 'gdal-async';
+import path from 'path';
+import {metainfoGeojson, transformGeojson, transformShp} from './transform/ogr2ogrtrans.mjs';
 
 export const handler = () => {
   try {
     // use process.env.LAMBDA_TASK_ROOT acqure Lambda root
-    const tifPath = path.join(process.env.LAMBDA_TASK_ROOT, 'example.tif');
-    console.log('lambda root:', process.env.LAMBDA_TASK_ROOT);
-    console.log('Reading TIF file from:', tifPath);
+    // const tifPath = path.join(process.env.LAMBDA_TASK_ROOT, 'example.tif');
+    // console.log('lambda root:', process.env.LAMBDA_TASK_ROOT);
+    // console.log('Reading TIF file from:', tifPath);
+    const tifPath = './example.tif';
 
     // gdal deal
     const dataset = gdal.open(tifPath);
@@ -31,3 +33,9 @@ export const handler = () => {
     };
   }
 };
+
+handler();
+transformGeojson();
+metainfoGeojson();
+console.log('starting shape file transform.......................');
+transformShp();
