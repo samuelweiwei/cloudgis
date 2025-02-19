@@ -1,4 +1,5 @@
 import { sequelize, initDatabase } from './sequelize/index.js';
+import { QueryTypes } from 'sequelize';
 
 let isDbConnected = false;
 let isDbInitialized = false;
@@ -34,18 +35,41 @@ export const handler = async (event) => {
         const allUsers = await users.findAll({
             limit: 10
         });
-        const [postgisVersion] = await sequelize.query(
-            'SELECT postgis_version();',
+        
+        // First check if PostGIS is installed
+        const isPostgisInstalled = await sequelize.query(
+            'SELECT EXISTS (SELECT 1 FROM pg_extension WHERE extname = \'postgis\');',
             {
                 type: QueryTypes.SELECT,
-                plain: true // Returns a single object instead of an array
+                plain: true
             }
         );
+        
+        // If PostGIS is not installed, install it
+        if (!isPostgisInstalled.exists) {
+            console.log('PostGIS not found, installing...');
+            await sequelize.query('CREATE EXTENSION IF NOT EXISTS postgis;', {
+                type: QueryTypes.RAW
+            });
+            console.log('PostGIS installation completed');
+        }
+
+        // Now we can safely query PostGIS version
+        const postgisVersion = await sequelize.query(
+            'SELECT postgis_version() as version;',
+            {
+                type: QueryTypes.SELECT,
+                plain: true
+            }
+        );
+        
+
         return {
             statusCode: 200,
             body: JSON.stringify({
                 message: 'Success',
-                data: postgisVersion
+                postgisVersion: postgisVersion,
+                data: allUsers
             })
         };
 
