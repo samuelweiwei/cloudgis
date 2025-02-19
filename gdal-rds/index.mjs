@@ -1,6 +1,6 @@
 import gdal from 'gdal-async';
 import path from 'path';
-import {metainfoGeojson, transformGeojson, transformShp} from './transform/ogr2ogrtrans.mjs';
+import {metainfoGeojson, transformGeojson, transformShp, transformDXF} from './transform/ogr2ogrtrans.mjs';
 
 export const handler = () => {
   try {
@@ -39,3 +39,5 @@ transformGeojson();
 metainfoGeojson();
 console.log('starting shape file transform.......................');
 transformShp();
+console.log('starting DXF file transform.......................');
+transformDXF();

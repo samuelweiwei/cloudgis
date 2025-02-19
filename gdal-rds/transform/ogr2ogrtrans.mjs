@@ -48,3 +48,13 @@ export const transformShp = ()=>{
     var dataset = gdal.open('./Transit_Lanes.shp');
     console.log('dataset shape file:', dataset);
 }
+
+export const transformDXF = ()=>{
+  const dxfdrv = gdal.drivers.get('dxf');
+  if (!dxfdrv) {
+    console.error('DXF driver not available');
+    process.exit(1);
+  }
+  var dataset = dxfdrv.open('./bridge.dxf');
+  console.log('dataset DXF file:', dataset);
+}
