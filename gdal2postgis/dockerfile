@@ -1,0 +1,12 @@
+FROM public.ecr.aws/lambda/nodejs:20
+
+WORKDIR ${LAMBDA_TASK_ROOT}
+
+# copy
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# Lambda func
+CMD [ "index.handler" ]

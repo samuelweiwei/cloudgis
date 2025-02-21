@@ -1,15 +1,12 @@
 import gdal from 'gdal-async';
 import path from 'path';
-import {metainfoGeojson, transformGeojson, transformShp, transformDXF} from './transform/ogr2ogrtrans.mjs';
 
 export const handler = async (event) => {
   try {
     // use process.env.LAMBDA_TASK_ROOT acqure Lambda root
-    // const tifPath = path.join(process.env.LAMBDA_TASK_ROOT, 'example.tif');
-    // console.log('lambda root:', process.env.LAMBDA_TASK_ROOT);
-    // console.log('Reading TIF file from:', tifPath);
-    const tifPath = './data/example.tif';
-
+    const tifPath = path.join(process.env.LAMBDA_TASK_ROOT, 'example.tif');
+    console.log('Reading TIF file from:', tifPath);
+    
     // gdal deal
     const dataset = gdal.open(tifPath);
     const bandCount = dataset.bands.count();
@@ -33,5 +30,3 @@ export const handler = async (event) => {
     };
   }
 };
-
-transformShp();
