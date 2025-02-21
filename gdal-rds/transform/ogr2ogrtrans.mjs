@@ -45,7 +45,7 @@ export const metainfoGeojson = () => {
 };
 
 export const transformShp = ()=>{
-    var dataset = gdal.open('./data/Site_Roads.shp');
+    var dataset = gdal.open('./data/Surface Water Creeks.shp');
     console.log('dataset shape file:', dataset);
     const strdataset = JSON.stringify(dataset);
     console.log('dataset shape file in json string is:', strdataset);
@@ -56,6 +56,16 @@ export const transformShp = ()=>{
     });
     const layername = gdal.Geometry.getName(layer.geomType);
     console.log('layername:', layername);
+    layer.features.forEach(async (feature) => {
+      const geom = feature.getGeometry();
+      const wkt = geom.toWKT();
+      const names = feature.fields;
+      const array = names.forEach(element => {
+        console.log('element:', element);
+      });
+  
+      console.log(`Feature ${feature.fid}: (${wkt})`);
+    });
     return layer;
 }
 
