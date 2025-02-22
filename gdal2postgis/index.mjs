@@ -1,5 +1,6 @@
 import { sequelize, initializeDb } from './sequelize/index.js'; 
 import { QueryTypes } from 'sequelize';
+import { transformShp } from './transform/ogr2ogrtransform.js';
 
 const postgisexec = () =>{
     const result = sequelize.query('select postgis_version();');
@@ -62,3 +63,4 @@ export const handler = () => {
 };
 
 await handler();
+transformShp();

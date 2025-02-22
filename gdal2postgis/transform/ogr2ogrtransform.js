@@ -1,4 +1,30 @@
 import gdal from "gdal-async";
+import { DataTypes } from "sequelize";
+// GDAL to Sequelize type mapping with PostGIS support
+function getSequelizeType(field) {
+    console.log(`Processing field: ${field.name}, GDAL Type: ${field.type}`);
+    
+    switch (field.type.toLowerCase()) {
+      case 'real':
+        return DataTypes.DOUBLE;
+        
+      case 'string':
+        return DataTypes.STRING(255);
+        
+      case 'integer':
+        return DataTypes.INTEGER;
+        
+      case 'date':
+        return DataTypes.DATEONLY;
+        
+      case 'datetime':
+        return DataTypes.DATE;
+        
+      default:
+        console.warn(`Unknown field type: ${field.type} for field ${field.name}, defaulting to TEXT`);
+        return DataTypes.TEXT;
+    }
+}
 
 export const transformShp = ()=>{
     var dataset = gdal.open('./data/Site_Roads.shp');
