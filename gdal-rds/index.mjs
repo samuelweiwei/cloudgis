@@ -8,12 +8,12 @@ export const handler = async (event) => {
     // const tifPath = path.join(process.env.LAMBDA_TASK_ROOT, 'example.tif');
     // console.log('lambda root:', process.env.LAMBDA_TASK_ROOT);
     // console.log('Reading TIF file from:', tifPath);
-    const tifPath = './data/example.tif';
+    // const tifPath = './data/example.tif';
 
     // gdal deal
-    const dataset = gdal.open(tifPath);
-    const bandCount = dataset.bands.count();
-    console.log('Successfully read TIF file. Band count:', bandCount);
+    // const dataset = gdal.open(tifPath);
+    // const bandCount = dataset.bands.count();
+    // console.log('Successfully read TIF file. Band count:', bandCount);
     
     return {
       statusCode: 200,

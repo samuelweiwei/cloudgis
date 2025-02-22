@@ -42,7 +42,7 @@ for (const modelDefiner of modelDefiners) {
 // Get User model after initialization
 const { users: User } = sequelize.models;
 
-// 修改为一个可导出的初始化函数，而不是立即执行
+// Modifty as exported function
 const initDatabase = async () => {
     try {
         // Sync tables

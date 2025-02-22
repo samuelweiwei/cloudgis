@@ -45,7 +45,7 @@ export const metainfoGeojson = () => {
 };
 
 export const transformShp = ()=>{
-    var dataset = gdal.open('./data/Surface Water Creeks.shp');
+    var dataset = gdal.open('./data/Site_Roads.shp');
     console.log('dataset shape file:', dataset);
     const strdataset = JSON.stringify(dataset);
     console.log('dataset shape file in json string is:', strdataset);
@@ -66,7 +66,6 @@ export const transformShp = ()=>{
   
       console.log(`Feature ${feature.fid}: (${wkt})`);
     });
-    return layer;
 }
 
 export const transformDXF = ()=>{
