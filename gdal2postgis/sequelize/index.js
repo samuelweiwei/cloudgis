@@ -13,15 +13,15 @@ const DB_NAME = "postgres";
 let isDbConnected = false;
 let isDbInitialized = false;
 
-export const initializeDb = () => {
+export const initializeDb = async () => {
     if (!isDbConnected) {
         try {
-            sequelize.authenticate();
+            await sequelize.authenticate();
             console.log('Database connection has been established successfully.');
             isDbConnected = true;
 
             if (!isDbInitialized) {
-                sequelize.sync({ force: false, alter: true });
+                await sequelize.sync({ force: false, alter: true });
                 isDbInitialized = true;
             }
         } catch (error) {

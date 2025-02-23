@@ -26,8 +26,27 @@ function getSequelizeType(field) {
     }
 }
 
+// Get geometry type from GDAL layer
+function getGeometryType(layer) {
+  const geomType = layer.geomType;
+  const layerName = gdal.Geometry.getName(geomType);
+  
+  // Map GDAL geometry types to PostGIS types
+  if (layerName.includes('3D')) {
+    return 'GEOMETRY(LINESTRINGZ, 4326)';
+  } else if (layerName.includes('Line')) {
+    return 'GEOMETRY(LINESTRING, 4326)';
+  } else if (layerName.includes('Point')) {
+    return 'GEOMETRY(POINT, 4326)';
+  } else if (layerName.includes('Polygon')) {
+    return 'GEOMETRY(POLYGON, 4326)';
+  }
+  
+  return 'GEOMETRY';
+}
+
 export const transformShp = ()=>{
-    var dataset = gdal.open('./data/Site_Roads.shp');
+    var dataset = gdal.open('./data/Surface Water Creeks.shp');
     console.log('dataset shape file:', dataset);
     const strdataset = JSON.stringify(dataset);
     console.log('dataset shape file in json string is:', strdataset);
