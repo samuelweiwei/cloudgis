@@ -1,5 +1,5 @@
 # Lambda to RDS latest update
-Updating an AWS Lambda function to connect to the latest version of Amazon RDS involves several steps. Below is a general guide to help you through the process:
+The sub module is to testify the sequelize (orm tool for node) to connect and operate on RDS postgreSQL instance. Updating an AWS Lambda function to connect to the latest version of Amazon RDS involves several steps. Below is a general guide to help you through the process:
 
 ### Step 1: Update the RDS Endpoint
 

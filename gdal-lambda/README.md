@@ -1,6 +1,6 @@
 # gdal-lambda
 
-This is a PoC for using GDAL in AWS Lambda. It is a node package that provides asynchronous access to GDAL (Geospatial Data Abstraction Library) functionality using AWS Lambda. It allows you to perform geospatial operations such as reading, writing, and transforming geospatial data without the need to manage a local GDAL installation. 
+This is a PoC for using GDAL in AWS Lambda. Mostly it is a test of dockerfile and package.json for deployment over 256MB. It is a node package that provides asynchronous access to GDAL (Geospatial Data Abstraction Library) functionality using AWS Lambda. It allows you to perform geospatial operations such as reading, writing, and transforming geospatial data without the need to manage a local GDAL installation. 
 
 ## Installation
 
