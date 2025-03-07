@@ -31,7 +31,7 @@ export const handler = async () => {
     }
 
     // Now we can safely query PostGIS version
-    postgisVersion = sequelize.query(
+    postgisVersion = await sequelize.query(
       "SELECT postgis_full_version() as version;",
       {
         type: QueryTypes.SELECT,
@@ -39,8 +39,10 @@ export const handler = async () => {
       }
     );
 
+    console.log("GIS version is after async:", postgisVersion);
+
     // New shapefile and database writer
-    const transformer = new ShapefileTransformer("./data/DEM_1m_contours.shp");
+    const transformer = new ShapefileTransformer("./data/Site_Roads.shp");
     const writer = new DatabaseWriter(sequelize);
 
     // Analyze shapefile
