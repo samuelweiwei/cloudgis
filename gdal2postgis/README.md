@@ -37,3 +37,27 @@ Create a lambda function using the docker image using the following command:
 ```aws lambda create-function --function-name gdal2postgis --package-type Image --code ImageUri=123456789012.dkr.ecr.us-east-1.amazonaws.com/{namespace}/gdal2postgis:latest --role arn:aws:iam::123456789012:role/lambda-ex --timeout 15 --memory-size 1024```
 or set up the lambda with aws console.
 
+## Summary
+
+### Build the Docker image
+docker build -t my-lambda-image .
+
+### Authenticate Docker to ECR
+```
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+```
+BTW: how to get account id
+```
+aws sts get-caller-identity --query "Account" --output text
+```
+
+### Tag the Docker image
+```
+docker tag my-lambda-image:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<repository-name>:latest
+```
+
+### Push the Docker image to ECR
+```
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<repository-name>:latest
+```
+
