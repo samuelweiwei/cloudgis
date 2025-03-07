@@ -43,10 +43,20 @@ or set up the lambda with aws console.
 docker build -t my-lambda-image .
 
 ### Authenticate Docker to ECR
+```
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+```
+BTW: how to get account id
+```
+aws sts get-caller-identity --query "Account" --output text
+```
 
 ### Tag the Docker image
+```
 docker tag my-lambda-image:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<repository-name>:latest
+```
 
 ### Push the Docker image to ECR
+```
 docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<repository-name>:latest
+```
