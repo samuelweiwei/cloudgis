@@ -62,7 +62,7 @@ export class DatabaseWriter {
       return Model;
     }
   
-    async writeFeatures(Model, features, batchSize = 1000) {
+    async writeFeatures(Model, features, batchSize = 100) {
       const batches = [];
       for (let i = 0; i < features.length; i += batchSize) {
         const batch = features.slice(i, i + batchSize).map(feature => ({
@@ -78,6 +78,9 @@ export class DatabaseWriter {
           logging: false,
           returning: false 
         }));
+
+        // Optional: Add logging after pushing the batch
+        console.log(`Batch ${Math.floor(i/batchSize) + 1} queued for processing`);
       }
   
       await Promise.all(batches);

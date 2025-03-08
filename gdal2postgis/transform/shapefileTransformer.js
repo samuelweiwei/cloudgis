@@ -42,6 +42,9 @@ export class ShapefileTransformer {
       const features = [];
       const fieldNames = layer.fields.getNames();
 
+      // Log the actual feature count that GDAL sees
+      console.log(`GDAL layer contains ${layer.features.count()} features`);
+
       // Use a traditional for loop to iterate through features
       for (let i = 0; i < layer.features.count(); i++) {
         const feature = layer.features.get(i);
