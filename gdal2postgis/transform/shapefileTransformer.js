@@ -27,7 +27,7 @@ export class ShapefileTransformer {
           type: layer.fields.get(name).type
         });
       });
-
+      console.dir(analysis)
       return analysis;
     } catch (error) {
       console.error('Error in analyze:', error);
@@ -117,5 +117,5 @@ export class ShapefileTransformer {
 
 export const verse = () => {
   console.log('GDAL version:', gdal.version);
-console.log('PROJ version:', gdal.projVersion);
+  console.log('PROJ version:', gdal.projVersion);
 }

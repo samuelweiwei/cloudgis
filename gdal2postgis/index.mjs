@@ -8,12 +8,12 @@ const postgisexec = () => {
 };
 let postgisVersion;
 
-export const handler = async () => {
+export const handler = async (event) => {
   try {
     initializeDb();
 
     // First check if PostGIS is installed
-    const isPostgisInstalled = sequelize.query(
+    const isPostgisInstalled = await sequelize.query(
       "SELECT EXISTS (SELECT 1 FROM pg_extension WHERE extname = 'postgis');",
       {
         type: QueryTypes.SELECT,
@@ -24,7 +24,7 @@ export const handler = async () => {
     // If PostGIS is not installed, install it
     if (!isPostgisInstalled.exists) {
       console.log("PostGIS not found, installing...");
-      sequelize.query("CREATE EXTENSION IF NOT EXISTS postgis;", {
+      await sequelize.query("CREATE EXTENSION IF NOT EXISTS postgis;", {
         type: QueryTypes.RAW,
       });
       console.log("PostGIS installation completed");
@@ -59,7 +59,7 @@ export const handler = async () => {
     console.log("Creating table...");
     const Model = await writer.createTable("site_roads", analysis);
 
-    console.log("Writing features to database...");
+    console.log("Writing features to database......");
     const writtenCount = await writer.writeFeatures(Model, features);
 
     return {
@@ -82,6 +82,4 @@ export const handler = async () => {
   } finally {
     console.log("PostGIS version:", postgisVersion);
   }
-};
-
-await handler();
+}
