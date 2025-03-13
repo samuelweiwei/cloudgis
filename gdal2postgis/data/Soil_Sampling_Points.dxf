@@ -1,0 +1,672 @@
+999
+DXF created from Sci 3D
+  0
+SECTION
+  2
+HEADER
+  9
+$ACADVER
+  1
+AC1006
+  9
+$INSBASE
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$EXTMIN
+ 10
+500100
+ 20
+500300
+ 30
+405
+  9
+$EXTMAX
+ 10
+503700
+ 20
+501900
+ 30
+405
+  0
+ENDSEC
+  0
+SECTION
+  2
+TABLES
+  0
+TABLE
+  2
+LAYER
+  0
+LAYER
+  2
+Soil_Sampling_Points
+ 70
+64
+ 62
+7
+  6
+CONTINUOUS
+  0
+ENDTAB
+  0
+ENDSEC
+  0
+SECTION
+  2
+BLOCKS
+  0
+ENDSEC
+  0
+SECTION
+  2
+ENTITIES
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500100
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500100
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500100
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500100
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500100
+ 20
+500300
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500500
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500500
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500500
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500500
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500500
+ 20
+500300
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500900
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500900
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500900
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500900
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+500900
+ 20
+500300
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501300
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501300
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501300
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501300
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501300
+ 20
+500300
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501700
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501700
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501700
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501700
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+501700
+ 20
+500300
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502100
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502100
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502100
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502100
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502100
+ 20
+500300
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502500
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502500
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502500
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502500
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502500
+ 20
+500300
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502900
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502900
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502900
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502900
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+502900
+ 20
+500300
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503300
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503300
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503300
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503300
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503300
+ 20
+500300
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503700
+ 20
+501900
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503700
+ 20
+501500
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503700
+ 20
+501100
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503700
+ 20
+500700
+ 30
+405
+  0
+POINT
+  8
+Soil_Sampling_Points
+ 62
+0
+ 10
+503700
+ 20
+500300
+ 30
+405
+  0
+ENDSEC
+  0
+EOF

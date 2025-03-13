@@ -1,7 +1,6 @@
-// shapefileTransformer.js
 import gdal from 'gdal-async';
 
-export class ShapefileTransformer {
+export class DXFTransformer {
   constructor(filePath) {
     this.filePath = filePath;
   }
@@ -10,7 +9,7 @@ export class ShapefileTransformer {
     try {
       const dataset = await gdal.openAsync(this.filePath);
       const layer = await dataset.layers.getAsync(0);
-      
+
       const analysis = {
         layerName: layer.name,
         geomType: gdal.Geometry.getName(layer.geomType),
@@ -27,7 +26,8 @@ export class ShapefileTransformer {
           type: layer.fields.get(name).type
         });
       });
-      console.dir(analysis)
+
+      console.dir(analysis);
       return analysis;
     } catch (error) {
       console.error('Error in analyze:', error);
@@ -50,7 +50,7 @@ export class ShapefileTransformer {
         const feature = layer.features.get(i);
         const geometry = feature.getGeometry();
         const attributes = {};
-        
+
         // Get field values using field names
         fieldNames.forEach(fieldName => {
           attributes[fieldName] = feature.fields.get(fieldName);
@@ -67,7 +67,8 @@ export class ShapefileTransformer {
 
         features.push(attributes);
       }
-      console.dir(features)
+
+      console.dir(features);
       return features;
     } catch (error) {
       console.error('Error in transformFeatures:', error);
@@ -75,17 +76,17 @@ export class ShapefileTransformer {
     }
   }
 
-  async printShapefileInfo() {
+  async printDXFInfo() {
     try {
       const dataset = await gdal.openAsync(this.filePath);
       const layer = await dataset.layers.getAsync(0);
-      
+
       console.log('Dataset info:', {
         description: dataset.description,
         layers: dataset.layers.count(),
         driver: dataset.driver.description
       });
-      
+
       console.log('Layer info:', {
         name: layer.name,
         featureCount: layer.features.count(),
@@ -112,7 +113,7 @@ export class ShapefileTransformer {
         }
       }
     } catch (error) {
-      console.error('Error in printShapefileInfo:', error);
+      console.error('Error in printDXFInfo:', error);
       throw error;
     }
   }
@@ -121,4 +122,4 @@ export class ShapefileTransformer {
 export const verse = () => {
   console.log('GDAL version:', gdal.version);
   console.log('PROJ version:', gdal.projVersion);
-}
+};

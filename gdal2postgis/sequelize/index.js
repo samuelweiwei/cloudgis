@@ -2,9 +2,9 @@
 import { Sequelize } from 'sequelize';
 
 const REGION = 'us-east-1';
-const RDS_INSTANCE = 'pginstance1';
-const DB_HOST = `${RDS_INSTANCE}.ct6uwmcmy1yk.us-east-1.rds.amazonaws.com`;
-// const DB_HOST = 'localhost';
+// const RDS_INSTANCE = 'pginstance1';
+// const DB_HOST = `${RDS_INSTANCE}.ct6uwmcmy1yk.us-east-1.rds.amazonaws.com`;
+const DB_HOST = 'localhost';
 const DB_USER = "postgres";
 const DB_PORT = 5432;
 const DB_PASSWORD = "postgres";
@@ -35,11 +35,11 @@ export const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
     host: DB_HOST,
     port: DB_PORT,
     dialect: 'postgres',
-    dialectOptions: {
-        ssl: {
-            rejectUnauthorized: false
-        }
-    },
+    // dialectOptions: {
+    //     ssl: {
+    //         rejectUnauthorized: false
+    //     }
+    // },
     pool: {
         max: 20,
         min: 0,

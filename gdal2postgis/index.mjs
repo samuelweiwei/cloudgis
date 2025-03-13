@@ -2,18 +2,19 @@ import { sequelize, initializeDb } from "./sequelize/index.js";
 import { QueryTypes } from "sequelize";
 import { ShapefileTransformer } from "./transform/shapefileTransformer.js";
 import { DatabaseWriter } from "./sequelize/dataWriter.js";
+import { DXFTransformer } from "./transform/dxfTransformer.js";
 const postgisexec = () => {
   const result = sequelize.query("select postgis_version();");
   return result;
 };
 let postgisVersion;
 
-export const handler = async (event) => {
+export const handler = async () => {
   try {
     initializeDb();
 
     // First check if PostGIS is installed
-    const isPostgisInstalled = await sequelize.query(
+    const isPostgisInstalled = sequelize.query(
       "SELECT EXISTS (SELECT 1 FROM pg_extension WHERE extname = 'postgis');",
       {
         type: QueryTypes.SELECT,
@@ -24,7 +25,7 @@ export const handler = async (event) => {
     // If PostGIS is not installed, install it
     if (!isPostgisInstalled.exists) {
       console.log("PostGIS not found, installing...");
-      await sequelize.query("CREATE EXTENSION IF NOT EXISTS postgis;", {
+      sequelize.query("CREATE EXTENSION IF NOT EXISTS postgis;", {
         type: QueryTypes.RAW,
       });
       console.log("PostGIS installation completed");
@@ -38,11 +39,11 @@ export const handler = async (event) => {
         plain: true,
       }
     );
-
     console.log("GIS version is after async:", postgisVersion);
 
     // New shapefile and database writer
-    const transformer = new ShapefileTransformer("./data/Site_Roads.shp");
+    // const transformer = new ShapefileTransformer("./data/Soil_Sampling_Points.shp");
+    const transformer = new DXFTransformer("./data/Soil_Sampling_Points.dxf")
     const writer = new DatabaseWriter(sequelize);
 
     // Analyze shapefile
@@ -57,7 +58,7 @@ export const handler = async (event) => {
 
     // Create table and write features
     console.log("Creating table...");
-    const Model = await writer.createTable("site_roads", analysis);
+    const Model = await writer.createTable("soil_sampling_points", analysis);
 
     console.log("Writing features to database......");
     const writtenCount = await writer.writeFeatures(Model, features);
@@ -83,3 +84,5 @@ export const handler = async (event) => {
     console.log("PostGIS version:", postgisVersion);
   }
 }
+
+await handler()
