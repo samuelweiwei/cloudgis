@@ -34,4 +34,5 @@ export const handler = async (event) => {
   }
 };
 
-transformShp();
+// transformShp();
+transformDXF();
