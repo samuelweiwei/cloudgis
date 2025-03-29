@@ -8,14 +8,17 @@ export interface TransformLambdaStackProps extends cdk.StackProps {
 
 export class TransformLambdaStack extends cdk.Stack {
     public readonly lambdaFunction: cdk.aws_lambda.IFunction;
-    constructor(scope: cdk.App, id: string, props: TransformLambdaStackProps){
+    constructor(scope: Construct, id: string, props?: TransformLambdaStackProps){
         super(scope, id, props);
     
         //Create lambda function
+        if (!props?.secretName) {
+            throw new Error('secretName is required');
+        }
         this.lambdaFunction = new cdk.aws_lambda.Function(this, 'TransformGdalLambda',{
             runtime: cdk.aws_lambda.Runtime.NODEJS_22_X,
             handler: 'index.handler',
-            code: cdk.aws_lambda.Code.fromAsset('../../lambda/transformer'),
+            code: cdk.aws_lambda.Code.fromAsset('./lambda/transformer'),
             environment:{
                 DATABASE_SECRET: props.secretName,
             }
