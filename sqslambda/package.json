@@ -1,0 +1,23 @@
+
+{
+  "name": "sqs-lambda-handler",
+  "version": "1.0.0",
+  "description": "AWS Lambda function for handling SQS events",
+  "main": "dist/index.mjs",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && npm run rename-files",
+    "rename-files": "find dist -name '*.js' -exec sh -c 'mv \"$1\" \"${1%.js}.mjs\"' _ {} \\;",
+    "clean": "rm -rf dist",
+    "dev": "npm run clean && npm run build",
+    "deploy": "npm run build && zip -r lambda-function.zip dist/ node_modules/"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.131",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.490.0"
+  }
+}

@@ -85,4 +85,10 @@ export const handler = async () => {
   }
 }
 
-await handler()
+// await handler();
+const shape = new ShapefileTransformer("./data/Soil_Sampling_Points.shp");
+shape.analyze().then((result) => {
+  console.log(result);
+}).catch((error) => {
+  console.error("Error:", error);
+});
