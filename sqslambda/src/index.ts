@@ -54,9 +54,9 @@ async function processMessage(messageBody: string, messageId: string): Promise<P
 }
 
 // Main Lambda handler for SQS events
-export const handler: SQSHandler = async (event: SQSEvent, context: Context) => {
+export const handler = async (event: any) => {
   console.log('SQS Event received:', JSON.stringify(event, null, 2));
-  console.log('Lambda Context:', JSON.stringify(context, null, 2));
+  // console.log('Lambda Context:', JSON.stringify(context, null, 2));
   
   const results: ProcessedMessage[] = [];
   const batchItemFailures: { itemIdentifier: string }[] = [];
@@ -90,15 +90,10 @@ export const handler: SQSHandler = async (event: SQSEvent, context: Context) => 
   
   console.log(`Processing complete. Success: ${successCount}, Errors: ${errorCount}`);
   
-  // Return batch item failures for partial batch failure handling
-  // This allows SQS to retry only the failed messages
-  if (batchItemFailures.length > 0) {
-    console.log('Batch item failures:', batchItemFailures);
-    return {
-      batchItemFailures
-    };
-  }
-  
-  // If all messages processed successfully, return empty response
-  return {};
+  // Always return batchItemFailures as an array (empty if no failures)
+  // This matches the SQSBatchResponse type
+  console.log('Batch item failures:', batchItemFailures);
+  return {
+    batchItemFailures
+  };
 };
