@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "AWS Lambda function for handling SQS events",
   "main": "dist/index.mjs",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
-    "build": "tsc && npm run rename-files",
+    "build": "tsc",
     "rename-files": "find dist -name '*.js' -exec sh -c 'mv \"$1\" \"${1%.js}.mjs\"' _ {} \\;",
     "clean": "rm -rf dist",
     "dev": "npm run clean && npm run build",
